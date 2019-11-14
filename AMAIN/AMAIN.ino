@@ -90,12 +90,10 @@ void setup()
   readMsgIn();
   readMsgOut();
   readThreshold();
-
-  String strThres(threshold);
-  thresholdInt = strThres.toInt();
-
-  //    clearThreshold();
-
+  if (threshold) {
+    String strThres(threshold);
+    thresholdInt = strThres.toInt();
+  }
 
 }
 
@@ -110,17 +108,7 @@ void loop()
     ReadSerial();                                    //Đọc giá trị Serial
   }
 
-  if (updateData) {
-    readPassword();
-    readMsgIn();
-    readMsgOut();
-    readThreshold();
-    String strThres(threshold);
-    thresholdInt = strThres.toInt();
-    Serial.println("updated");
-    updateData = false;
 
-  }
 
 
   if (mode) {                                         // chế độ setting
@@ -219,7 +207,6 @@ void loop()
               }
             } while (!completeThreshold);
           }
-
           completeThresholdChange();
           break;
         }
@@ -232,10 +219,22 @@ void loop()
         key = ' ';
         choosen = ' ';
         choosenMess = ' ';
-        
+
         mode = false;
         break;
     }
+
+    if (updateData) {
+      readPassword();
+      readMsgIn();
+      readMsgOut();
+      readThreshold();
+      String strThres(threshold);
+      thresholdInt = strThres.toInt();
+      Serial.println("updated");
+      updateData = false;
+    }
+
   }
 
   else {
@@ -249,6 +248,7 @@ void loop()
     if ( (unsigned long) (millis() - time2) > 100  )
     {
       sensorTwoInit();
+      Serial.println(thresholdInt);
       checkSensorTwo(thresholdInt);
       time2 = millis();
     };

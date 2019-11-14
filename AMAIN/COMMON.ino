@@ -58,7 +58,7 @@ void completePasswordChange() {
 
     mode = false;
     iscorrect = false;
-    updateData = false;
+    updateData = true;
     completePassword = false;
 
 
@@ -80,7 +80,7 @@ void completeMessageChange() {
     mode = false;
     iscorrect = false;
     completeMessage = false;
-    updateData = false;
+    updateData = true;
 
     isClearCurrentDisplay = true;
     ishowMessageDisplay = true;
@@ -99,7 +99,7 @@ void completeThresholdChange() {
     mode = false;
     iscorrect = false;
     completeThreshold = false;
-    updateData = false;
+    updateData = true;
 
 
     isClearCurrentDisplay = true;
@@ -117,7 +117,6 @@ void completeThresholdChange() {
 void clearCurrentDisplay() {
   if (isClearCurrentDisplay) {
     lcd.clear();
-//    clearData();
     isshowSetting = false;
     isClearCurrentDisplay = false;
   }

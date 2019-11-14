@@ -7,12 +7,11 @@ void savePassword() {
   Serial.print("PASSWORD: ");
   Serial.println(Data);
   writePassword(Data, String(Data).length());
-  updateData = true;
-  completePassword = true;
+
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Done!");
-
+  completePassword = true;
 }
 
 void saveMessageIn() {
@@ -24,12 +23,11 @@ void saveMessageIn() {
   Serial.print("MESSIN: ");
   Serial.println(message_in);
   writeMsgIn(message_in, String(message_in).length());
-  updateData = true;
-  completeMessage = true;
+
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Done!");
-
+  completeMessage = true;
 }
 
 void saveMessageOut() {
@@ -41,11 +39,11 @@ void saveMessageOut() {
   Serial.print("MESSOUT: ");
   Serial.println(message_out);
   writeMsgOut(message_out, String(message_out).length());
-  updateData = true;
-  completeMessage = true;
+
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Done!");
+  completeMessage = true;
 
 }
 
@@ -59,11 +57,10 @@ void saveThreshold() {
     Serial.print("Rate: ");
     Serial.println(threshold);
     writeThreshold(threshold, String(threshold).length());
-    updateData = true;
-    completeThreshold = true;
     lcd.clear();
     lcd.setCursor(0, 0);
     lcd.print("Done!");
+    completeThreshold = true;
   }
   else {
     lcd.clear();

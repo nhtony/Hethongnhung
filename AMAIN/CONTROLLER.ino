@@ -1,6 +1,5 @@
 
 void sensorController() {
-  checkSensor(60);
   if (arr[0] == 1) {
     if (checkTwo == 1) {
       checkIn();
@@ -39,9 +38,8 @@ void sensorController() {
     arr[1] = 0;
     checkOne = false;
     checkTwo = false;
-
   }
-  delay(500);
+  delay(100);
 }
 
 void keypadController() {
@@ -55,7 +53,7 @@ void keypadController() {
           break;
         case '2':
           if (iscorrect) {
-            if (key == '1' || key == '2') {
+            if (key == '1' || key == '2' || key == 'C') {
               choosenMess = key;
               key = ' ';
             }
@@ -66,9 +64,27 @@ void keypadController() {
               case '2':
                 enterMessage(temp, false);
                 break;
+              case 'C':
+                mode = false;
+                choosenMess = ' ';
+                completeMessage = true;
+                key = ' ';
             }
           }
           else enterPassword(temp);
+          break;
+
+        case '3':
+          if (iscorrect) {
+            enterThreshold(temp);
+          }
+          else enterPassword(temp);
+          break;
+
+        case 'C':
+          mode = false;
+          choosen = ' ';
+          key = ' ';
           break;
       }
     }
@@ -83,7 +99,7 @@ void keypadController() {
     state = 0;
 
     if (isshowSetting) {
-      if (key == '1' || key == '2') {
+      if (key == '1' || key == '2' || key == 'C' || key == '3') {
         choosen = key;
         key = ' ';
       }
@@ -96,9 +112,5 @@ void programController() {
   if (key == '$' || key == '#') {
     mode = true;
     isshowSetting = true;
-  }
-  else if (key == '+' || key == ',') {
-    mode = false;
-    key = ' ';
   }
 }

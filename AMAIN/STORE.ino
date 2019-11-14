@@ -31,6 +31,17 @@ void clearMessOut() // clear memory
 }
 
 
+void clearThreshold() // clear memory
+{
+  Serial.println("clearRate");
+  for (int i = 49 ; i < 100 ; i++) {
+    Serial.println(i);
+    EEPROM.write(i, 0);
+    delay(5);
+  }
+}
+
+
 void writePassword(char first[], size_t len)
 {
   Serial.println("pass: ");
@@ -49,8 +60,8 @@ void writeMsgIn(char second[], size_t len)
   Serial.println(second);
   for (int i = 17; i < 17 + len; i++)
   {
-    Serial.println(second[i-17]);
-    EEPROM.write(i, second[i-17]);
+    Serial.println(second[i - 17]);
+    EEPROM.write(i, second[i - 17]);
     delay(5);
   }
 }
@@ -62,8 +73,19 @@ void writeMsgOut(char third[], size_t len)
 
   for (int i = 33; i < 33 + len; i++)
   {
-    Serial.println(third[i-33]);
-    EEPROM.write(i, third[i-33]);
+    Serial.println(third[i - 33]);
+    EEPROM.write(i, third[i - 33]);
+    delay(5);
+  }
+}
+
+void writeThreshold(char third[], size_t len)
+{
+  Serial.print("writeRate: ");
+  for (int i = 49; i < 49 + len; i++)
+  {
+    Serial.println(third[i - 49]);
+    EEPROM.write(i, third[i - 49]);
     delay(5);
   }
 }
@@ -105,4 +127,17 @@ void readMsgOut()
   message_in_master[49 - 33] = resOut;
   Serial.print("readMsgOut: ");
   Serial.println(message_out_master);
+}
+
+void readThreshold()
+{
+  byte res;
+  for (int i = 49; i < 52; i++)
+  {
+    res = EEPROM.read(i);
+    threshold[i - 49] = res;
+  }
+  threshold[52 - 49] = res;
+  Serial.print("readRate: ");
+  Serial.println(threshold);
 }

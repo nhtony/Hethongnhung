@@ -18,9 +18,10 @@ void checkIn() {
   num += 1;
   lcd.setCursor(4, 0);
   lcd.print(message_in_master);
-  dot();
-  dot();
+  delay(1000);
+  Serial.println(message_in_master);
   DisplayDS1307();
+  mode = false;
 }
 
 
@@ -31,12 +32,11 @@ void checkOut() {
   }
   lcd.setCursor(4, 0);
   lcd.print(message_out_master);
-  dash();
-  dash();
+  Serial.println(message_out_master);
+  delay(1000);
   DisplayDS1307();
+  mode = false;
 }
-
-
 
 void testSensor() {
   Serial.print("Distance 1: ");
@@ -48,4 +48,89 @@ void testSensor() {
   Serial.print(" Two: ");
   Serial.println(checkTwo);
   delay(100);
+}
+
+void completePasswordChange() {
+  if (completePassword) {
+    key = ' ';
+    choosen = ' ';
+    choosenMess = ' ';
+
+    mode = false;
+    iscorrect = false;
+    updateData = false;
+    completePassword = false;
+
+
+    isClearCurrentDisplay = true;
+    data_count = 0;
+    master_count = 0;
+
+  }
+}
+
+
+void completeMessageChange() {
+  if (completeMessage) {
+
+    key = ' ';
+    choosen = ' ';
+    choosenMess = ' ';
+
+    mode = false;
+    iscorrect = false;
+    completeMessage = false;
+    updateData = false;
+
+    isClearCurrentDisplay = true;
+    ishowMessageDisplay = true;
+    isshowCurrentPassDisplay = true;
+
+    data_count = 0;
+    master_count = 0;
+    mess_count = 0;
+
+  }
+}
+
+
+void completeThresholdChange() {
+  if (completeThreshold) {
+    mode = false;
+    iscorrect = false;
+    completeThreshold = false;
+    updateData = false;
+
+
+    isClearCurrentDisplay = true;
+
+    key = ' ';
+    choosen = ' ';
+    choosenMess = ' ';
+
+    data_count = 0;
+    master_count = 0;
+    threshold_count = 0;
+  }
+}
+
+void clearCurrentDisplay() {
+  if (isClearCurrentDisplay) {
+    lcd.clear();
+//    clearData();
+    isshowSetting = false;
+    isClearCurrentDisplay = false;
+  }
+}
+
+void showMessageDisplay() {
+  if (ishowMessageDisplay) {
+    DisplayChangeMessage();
+    isshowCurrentPassDisplay = false;
+  }
+}
+
+void hideMessageDisplay() {
+  lcd.clear();
+  ishowMessageDisplay = false;
 }

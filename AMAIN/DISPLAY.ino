@@ -35,7 +35,7 @@ void DisplaySetting() {
   lcd.setCursor(0, 0);
   lcd.print("SETTING: CHANGE");
   lcd.setCursor(0, 1);
-  lcd.print("1.Pasword 2.Text");
+  lcd.print("1.Pw 2.Txt 3.Thr");
   keypadController();
 }
 
@@ -56,5 +56,13 @@ void DisplayChangeMessage() {
   lcd.print("CHANGE MESSAGE");
   lcd.setCursor(0, 1);
   lcd.print("1.In 2.Out");
+  keypadController();
+}
+
+void DisplayChangeThreshold() {
+  lcd.setCursor(0, 0);
+  lcd.print("CHANGE THRES:");
+  lcd.setCursor(0, 1);
+  lcd.print("**Value <= 450**");
   keypadController();
 }

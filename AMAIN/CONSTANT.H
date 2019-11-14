@@ -3,11 +3,11 @@ const byte DS1307 = 0x68;                           //Địa chỉ DS1307
 const byte NumberOfFields = 7;                      //Số byte cần đọc
 
 /*CẢM BIẾN SIÊU ÂM*/
-const int trig_1 = 10;
-const int echo_1 = 11;
+const int trig_1 = 12;
+const int echo_1 = 13;
 
-const int trig_2 = 12;
-const int echo_2 = 13;
+const int trig_2 = 10;
+const int echo_2 = 11;
 
 /*BUZZER*/
 int Buzzer = 13;

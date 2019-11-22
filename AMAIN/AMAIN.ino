@@ -13,6 +13,8 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 SimpleTimer timer;
 
+int timerId;
+
 unsigned long time1 = 0;
 unsigned long time2 = 0;
 
@@ -79,6 +81,7 @@ void setup()
   Wire.begin();  //Khai báo giao thức I2C
   lcd.init();
   lcd.backlight();
+  timerId = timer.setInterval(10000, outSetting);
   Serial.begin(9600);
   pinMode(trig_1, OUTPUT);  // chân trig sẽ phát tín hiệu
   pinMode(echo_1, INPUT);   // chân echo sẽ nhận tín hiệu
@@ -112,7 +115,8 @@ void loop()
 
 
   if (mode) {                                         // chế độ setting
-
+    timer.run();
+    timer.enable(timerId);
     if (isshowSetting) {
       DisplaySetting();
     }
@@ -124,6 +128,7 @@ void loop()
 
     switch (choosen) {
       case '1': {                                   // Đổi mật khẩu
+         timer.disable(timerId);
           clearCurrentDisplay();
           do {
             DisplayCurrentPassword();
@@ -147,6 +152,7 @@ void loop()
         }
 
       case '2': {                                    // Đổi thông báo
+        timer.disable(timerId);
           clearCurrentDisplay();
           if (isshowCurrentPassDisplay) {
             do {
@@ -188,6 +194,7 @@ void loop()
         }
 
       case '3': {
+        timer.disable(timerId);
           clearCurrentDisplay();
 
           do {
@@ -212,6 +219,7 @@ void loop()
         }
 
       case 'C':
+      timer.disable(timerId);
         iscorrect = false;
         completeMessage = false;
         completePassword = false;

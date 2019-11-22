@@ -133,3 +133,8 @@ void hideMessageDisplay() {
   lcd.clear();
   ishowMessageDisplay = false;
 }
+
+void outSetting(){
+  key = ' ';
+  if(mode) mode = false;
+}

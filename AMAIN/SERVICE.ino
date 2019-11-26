@@ -39,12 +39,10 @@ void saveMessageOut() {
   Serial.print("MESSOUT: ");
   Serial.println(message_out);
   writeMsgOut(message_out, String(message_out).length());
-
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Done!");
   completeMessage = true;
-
 }
 
 void saveThreshold() {

@@ -82,6 +82,7 @@ void setup()
   lcd.init();
   lcd.backlight();
   timerId = timer.setInterval(10000, outSetting);
+
   Serial.begin(9600);
   pinMode(trig_1, OUTPUT);  // chân trig sẽ phát tín hiệu
   pinMode(echo_1, INPUT);   // chân echo sẽ nhận tín hiệu
@@ -97,7 +98,6 @@ void setup()
     String strThres(threshold);
     thresholdInt = strThres.toInt();
   }
-
 }
 
 void loop()
@@ -111,12 +111,10 @@ void loop()
     ReadSerial();                                    //Đọc giá trị Serial
   }
 
-
-
-
   if (mode) {                                         // chế độ setting
     timer.run();
     timer.enable(timerId);
+ 
     if (isshowSetting) {
       DisplaySetting();
     }
@@ -128,7 +126,9 @@ void loop()
 
     switch (choosen) {
       case '1': {                                   // Đổi mật khẩu
-         timer.disable(timerId);
+          timer.disable(timerId);
+
+         
           clearCurrentDisplay();
           do {
             DisplayCurrentPassword();
@@ -152,7 +152,7 @@ void loop()
         }
 
       case '2': {                                    // Đổi thông báo
-        timer.disable(timerId);
+          timer.disable(timerId);
           clearCurrentDisplay();
           if (isshowCurrentPassDisplay) {
             do {
@@ -194,9 +194,8 @@ void loop()
         }
 
       case '3': {
-        timer.disable(timerId);
+          timer.disable(timerId);
           clearCurrentDisplay();
-
           do {
             DisplayCurrentPassword();
             if (key == 'A') {
@@ -219,7 +218,7 @@ void loop()
         }
 
       case 'C':
-      timer.disable(timerId);
+        timer.disable(timerId);
         iscorrect = false;
         completeMessage = false;
         completePassword = false;
@@ -227,7 +226,6 @@ void loop()
         key = ' ';
         choosen = ' ';
         choosenMess = ' ';
-
         mode = false;
         break;
     }
@@ -246,17 +244,16 @@ void loop()
   }
 
   else {
+    timer.disable(timerId);
     if ( (unsigned long) (millis() - time1) > 100 )
     {
       sensorOneInit();
       checkSensorOne(thresholdInt);
       time1 = millis();
     }
-
     if ( (unsigned long) (millis() - time2) > 100  )
     {
       sensorTwoInit();
-      Serial.println(thresholdInt);
       checkSensorTwo(thresholdInt);
       time2 = millis();
     };

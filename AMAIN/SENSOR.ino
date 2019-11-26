@@ -40,7 +40,6 @@ void checkSensorOne(int checkDistance) {
 }
 
 
-
 void checkSensorTwo(int checkDistance) {
 
   distance_2 = getSensorValue(duration_2);

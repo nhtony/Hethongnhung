@@ -30,6 +30,7 @@ void sensorController() {
     }
   }
 
+
   else {
     lcd.clear();
     DisplayNum();
@@ -44,6 +45,7 @@ void sensorController() {
 
 void keypadController() {
   char temp = keypad.getKey();
+  Serial.println(temp);
   if ((int)keypad.getState() ==  PRESSED) {
     if (temp != 0) {
       key = temp;

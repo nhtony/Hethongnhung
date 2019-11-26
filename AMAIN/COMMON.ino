@@ -134,7 +134,11 @@ void hideMessageDisplay() {
   ishowMessageDisplay = false;
 }
 
-void outSetting(){
+void outSetting() {
   key = ' ';
-  if(mode) mode = false;
+  if (mode) mode = false;
+}
+
+void outCurrentPassword() {
+  choosen = 'C';
 }

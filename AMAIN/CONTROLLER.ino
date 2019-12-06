@@ -29,8 +29,6 @@ void sensorController() {
       DisplayDS1307();
     }
   }
-
-
   else {
     lcd.clear();
     DisplayNum();
